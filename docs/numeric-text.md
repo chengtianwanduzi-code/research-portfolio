@@ -34,6 +34,8 @@
 
 可学习表示中的概念和关系仍需外部证据解释，模型输出不直接作为已成立的材料因果机理。
 
+[阶段性R²、MAE与评价条件](metrics.md)。
+
 公开介绍更新：2026-10-09。
 
 <a id="english-details"></a>
@@ -65,5 +67,7 @@ Joint numeric–text prediction and symbolic graph prototypes are operational an
 3. Improve concept and source evidence quality, followed by more independent evaluation.
 
 Concepts and relations in learned representations require external evidence for interpretation. Model outputs do not directly establish causal material mechanisms.
+
+[Stage R², MAE, and evaluation conditions](metrics.md).
 
 Introduction updated: 2026-10-09.

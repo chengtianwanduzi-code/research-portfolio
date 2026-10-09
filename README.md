@@ -20,6 +20,34 @@
 | 跨领域证据与研究方向预测 | 文献信息组织、研究问题识别、方向发展潜力预测 | 首版评价与模型对照已完成开发回放；推进问题族扩充与独立验证 | [Research Forecasting](docs/research-forecast.md) |
 | 化学关系与逻辑推理 | 化学关系表达、证据追溯、候选解释比较与机理假说推理 | 已有局部模型和文献案例原型；继续完善证据判别与独立评价 | [Chemical Reasoning](docs/chemical-reasoning.md) |
 
+## 阶段性预测指标
+
+以下均为总烟产生量（TSP）的已保存结果，汇总五次运行的均值与样本标准差；MAE使用原单位m²。**这些结果来自数据质量更新前的研究版本，当前清洗数据复验另行记录。**
+
+### 历史回顾性测试
+
+| 模型／原型 | R²，均值 ± 标准差 | MAE，均值 ± 标准差（m²） |
+| --- | ---: | ---: |
+| 设计阶段机器学习模型 | 0.8083 ± 0.0518 | 3.7734 ± 0.2189 |
+| 单 Transformer | 0.7006 ± 0.0349 | 4.7127 ± 0.2250 |
+| Transformer 集成 | 0.7132 ± 0.0696 | 4.4990 ± 0.4549 |
+| Transformer 与树模型混合 | 0.7323 ± 0.0541 | 4.3130 ± 0.2467 |
+
+采用样本行随机80∶20划分。设计阶段模型使用50 kW/m²下的材料子集，Transformer系列使用较宽条件的研究池；评价池不同，不据此跨行判断模型优劣。混合模型包含树模型，不作为纯Transformer成绩。
+
+### 开发阶段原型
+
+| 模型／原型 | R²，均值 ± 标准差 | MAE，均值 ± 标准差（m²） |
+| --- | ---: | ---: |
+| 数值—文本联合原型 | 0.7166 ± 0.0451 | 4.1689 ± 0.3198 |
+| 同条件数值监督对照 | 0.7171 ± 0.0453 | 4.1593 ± 0.3102 |
+| 可学习符号图原型 | 0.6893 ± 0.1373 | 5.2101 ± 1.4914 |
+| 同表征数值预测对照 | 0.7061 ± 0.0984 | 4.9461 ± 1.2187 |
+
+以上为训练侧开发验证，不能与测试成绩直接排名。联合原型与数值监督对照的预测表现接近；符号图仍弱于同表征数值预测对照。图表达与化学机理成立分别评价。
+
+[查看评价条件与指标说明](docs/metrics.md)。
+
 ## 1．材料生烟的机器学习建模
 
 **Machine Learning for Material Smoke Responses**
@@ -66,10 +94,11 @@
 
 “已有实现”表示相应程序或原型已经运行；“开发验证”表示已在研究开发材料上检查，不能等同于独立验证。历史版本各自保留原数据和实验条件，当前工作按更新后的数据继续复验。预测改善、解释一致性和化学机制分别依据相应证据判断。
 
-本仓库公开研究方向、功能与阶段进展，不提供核心实现、具体模型架构、公式、特征清单、训练配方或未发表的数值结果。后续公开范围随研究进展另行决定。
+本仓库公开研究方向、功能、阶段进展及经核对的汇总指标。核心实现、具体模型架构、公式、特征清单、训练配方和完整实验结果继续保留。后续公开范围随研究进展另行决定。
 
 ## 更新
 
+- **2026-10-09：**补充TSP的R²、MAE、五次运行波动及评价条件，区分历史测试与开发原型。
 - **2026-10-09：**以 GitHub README 和 Markdown 文档作为主要介绍入口，补充五个方向的能力、已有工作与当前进度。本日期为介绍更新日期，不作为研究起始日期。
 
 © 2026 成田丸读子。保留权利。本仓库未授予开源许可。
@@ -93,6 +122,34 @@ The research descriptions are maintained directly in this README and the Markdow
 | Agent-assisted prediction correction | Error analysis, evidence-assisted correction, conditions for correction and evaluation | Calibration and retrieval prototypes organized; conditions for new comparative experiments being defined | [Agent-Assisted Correction](docs/agent-correction.md) |
 | Cross-domain evidence and research forecasting | Literature organization, research problem identification, forecasting direction development | Initial evaluation and model comparisons completed on retrospective development materials; problem coverage and independent validation being expanded | [Research Forecasting](docs/research-forecast.md) |
 | Chemical relations and logical reasoning | Chemical relation representations, evidence tracing, comparison of explanations and mechanistic hypotheses | Local models and literature case prototypes implemented; evidence assessment and independent evaluation ongoing | [Chemical Reasoning](docs/chemical-reasoning.md) |
+
+### Representative prediction metrics
+
+These are saved total smoke production (TSP) results, reported as means and sample standard deviations over five runs. MAE is in the original unit, m². **They come from research versions preceding the data quality update; re-evaluation with cleaned data is tracked separately.**
+
+#### Historical retrospective tests
+
+| Model / prototype | R², mean ± SD | MAE, mean ± SD (m²) |
+| --- | ---: | ---: |
+| Design-stage machine learning model | 0.8083 ± 0.0518 | 3.7734 ± 0.2189 |
+| Single Transformer | 0.7006 ± 0.0349 | 4.7127 ± 0.2250 |
+| Transformer ensemble | 0.7132 ± 0.0696 | 4.4990 ± 0.4549 |
+| Transformer–tree hybrid | 0.7323 ± 0.0541 | 4.3130 ± 0.2467 |
+
+The tests use row-random 80:20 splits. The design-stage model uses a 50 kW/m² material subset, while the Transformer series uses a research pool covering broader conditions. Different evaluation pools prevent a direct cross-row ranking. The hybrid contains a tree model and is not a pure Transformer result.
+
+#### Development prototypes
+
+| Model / prototype | R², mean ± SD | MAE, mean ± SD (m²) |
+| --- | ---: | ---: |
+| Numeric–text joint prototype | 0.7166 ± 0.0451 | 4.1689 ± 0.3198 |
+| Matched numerical-supervision control | 0.7171 ± 0.0453 | 4.1593 ± 0.3102 |
+| Learnable symbolic graph prototype | 0.6893 ± 0.1373 | 5.2101 ± 1.4914 |
+| Numerical prediction control with the same representation | 0.7061 ± 0.0984 | 4.9461 ± 1.2187 |
+
+These are training-side development validation results, not directly comparable with test scores. The joint prototype and numerical-supervision control have similar prediction performance. The symbolic graph remains below its numerical control with the same representation. Graph expression is evaluated separately from confirmation of chemical mechanisms.
+
+[Evaluation conditions and metric notes](docs/metrics.md).
 
 ### 1. Machine learning for material smoke responses
 
@@ -130,10 +187,11 @@ Prototypes include executable relation representations, local learned models, li
 
 An implemented capability means a program or prototype has run. Development evaluation uses research development materials and does not imply independent validation. Historical versions retain their original data and experimental conditions; current work is being re-evaluated using updated data. Predictive improvement, explanation consistency, and chemical mechanisms require their respective evidence.
 
-This repository shares research directions, capabilities, and progress. It does not provide core implementations, detailed architectures, formulas, feature lists, training recipes, or unpublished numerical results. Further disclosure will be decided as the research progresses.
+This repository shares research directions, capabilities, progress, and verified aggregate metrics. Core implementations, detailed architectures, formulas, feature lists, training recipes, and complete experimental results remain withheld. Further disclosure will be decided as the research progresses.
 
 ### Update
 
+- **2026-10-09:** Added TSP R², MAE, variation over five runs, and evaluation conditions, distinguishing historical tests from development prototypes.
 - **2026-10-09:** GitHub README and Markdown documents became the main introduction format, with expanded capabilities and progress for five areas. This is the introduction update date, not the research start date.
 
 © 2026 成田丸读子. All rights reserved. No open-source license is granted for this repository.

@@ -39,6 +39,8 @@
 
 预测能力与化学机制解释分别验证；特征贡献或预测提升只提供线索。
 
+[阶段性R²、MAE与评价条件](metrics.md)。
+
 公开介绍更新：2026-10-09。
 
 <a id="english-details"></a>
@@ -75,5 +77,7 @@ Multiple generations of traditional models, experimental implementations, and hi
 3. Complete cross-material validation and identify applicability conditions and failures.
 
 Predictive capability and chemical mechanisms are validated separately; feature contributions and prediction improvements provide leads.
+
+[Stage R², MAE, and evaluation conditions](metrics.md).
 
 Introduction updated: 2026-10-09.
